@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- this is spring configuration file rule to create ,create in web-inf folder Naming of file is 
+"nameOfDispatcherServlet-servlet.xml" like in this project spring-servlet.xml by 
+ this only spring able to read file without giving path to any where -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+     ">
+        
+     <mvc:annotation-driven/>
+     
+     <context:component-scan base-package="springmvcsearch"/> <!--we select here parents package so all sub package in this automatically scan to reduce code -->
+     
+     <!--CONFIGURE FOR adding static resources  -->
+     <mvc:resources location="/WEB-INF/resources/" mapping="/resources/**"></mvc:resources>
+ 
+ 
+ <!--  viewResolver config by help of InternalResourcViewResolver class -->
+ <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" name="viewResolver">
+ <!-- we can make view page in web-inf or other folder like insted of this we use eb-inf/pankaj or etc -->
+ <property name="prefix" value="/WEB-INF/views/"/> 
+ <property name="suffix" value=".jsp"/>
+  <!-- it resolve the url with help of prefix and suffix and controler given view page
+   like this "/WEB-INF/views/controllerGivenName.jsp" ,like "/WEB-INF/views/hello.jsp"-->                
+ </bean>
+
+<!-- Configure Multipart resolver to upload file orimage -->
+<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+<!-- <property name="maxUploadSize" value=""></property> --> <!--  this property to gave max size of file that uploded -->
+
+</bean>
+
+
+     
+     </beans>
